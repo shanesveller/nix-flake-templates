@@ -70,6 +70,11 @@
             cargo2nix
             rust-analyzer
             sccache
+          ]) ++ pkgs.lib.optionals (pkgs.stdenv.isDarwin)
+          (with pkgs.darwin.apple_sdk.frameworks; [
+            CoreServices
+            Security
+            SystemConfiguration
           ]) ++ lib.optionals (stdenv.isLinux) [
             cargo-tarpaulin
             perf-tools
