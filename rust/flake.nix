@@ -61,6 +61,7 @@
             cargo-watch
             cargo-whatfeatures
             clang
+            git-cliff
             just
             lld
             mdbook
