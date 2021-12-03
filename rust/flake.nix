@@ -32,8 +32,15 @@
         pkgs = import nixpkgs {
           inherit system;
 
-          overlays = inputs.cargo2nix.overlays."${system}"
-            ++ [ (final: prev: { inherit master unstable; }) ];
+          overlays = inputs.cargo2nix.overlays."${system}" ++ [
+            (final: prev: { inherit master unstable; })
+            (final: prev:
+              if prev ? "git-cliff" then
+                { }
+              else {
+                inherit (prev.master) git-cliff;
+              })
+          ];
         };
         sharedInputs = with pkgs;
           [
@@ -48,7 +55,6 @@
             cargo-generate
             cargo-geiger
             cargo-make
-            self.packages."${system}".cargo-outdated
             cargo-release
             cargo-sweep
             cargo-udeps
@@ -59,6 +65,7 @@
             lld
             mdbook
           ] ++ (with self.packages."${system}"; [
+            cargo-outdated
             cargo2nix
             rust-analyzer
             sccache
