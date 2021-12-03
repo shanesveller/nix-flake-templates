@@ -117,7 +117,7 @@
           # inputsFrom = pkgs.lib.mapAttrsToList (_: pkg: pkg { })
           #   rustPkgs.noBuild.workspace;
           # nativeBuildInputs = [ rustPkgs.rustChannel ] ++ sharedInputs;
-          nativeBuildInputs = [ rustTools.rust ];
+          nativeBuildInputs = sharedInputs ++ [ rustTools.rust ];
 
           NIX_PATH =
             "nixpkgs=${nixpkgs}:unstable=${inputs.nixpkgs-unstable}:master=${inputs.nixpkgs-master}";
@@ -183,8 +183,8 @@
             # Uncomment if using cargo2nix after generating Cargo.nix
             # inputsFrom = pkgs.lib.mapAttrsToList (_: pkg: pkg { })
             #   rustPkgs.noBuild.workspace;
-            nativeBuildInputs = [ pkgs.rust-bin.nightly.latest.default ]
-              ++ sharedInputs;
+            nativeBuildInputs = sharedInputs
+              ++ [ pkgs.rust-bin.nightly.latest.default ];
             RUSTFLAGS = "-Z macro-backtrace";
           };
         };
