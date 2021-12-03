@@ -70,7 +70,7 @@
             cargo2nix
             rust-analyzer
             sccache
-          ]) ++ pkgs.lib.optionals (pkgs.stdenv.isDarwin)
+          ]) ++ lib.optionals (stdenv.isDarwin)
           (with pkgs.darwin.apple_sdk.frameworks; [
             CoreServices
             Security
