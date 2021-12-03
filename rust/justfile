@@ -1,0 +1,20 @@
+build:
+  cargo build
+lint:
+  cargo clippy --lib
+release:
+  git rm -f Cargo.nix
+  nix run .#cargo2nix -- -f
+  git add Cargo.nix
+run:
+  cargo run
+sweep:
+  cargo sweep -s -v
+  cargo build
+  cargo build --release
+  cargo test
+  cargo sweep -f -v
+test:
+  cargo test
+watch:
+  cargo watch --clear --postpone -x 'clippy --lib' -x 'test --lib -- --show-output' -x 'clippy --bin' -x run

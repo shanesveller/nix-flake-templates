@@ -1,0 +1,24 @@
+#+TITLE: Nix Flake Templates
+
+* Table of Contents :TOC_2_gh:
+- [[#available-templates][Available Templates]]
+  - [[#rust][Rust]]
+
+* Available Templates
+** Rust
+*** Features
+- rust-overlay
+- faster linker for Linux based on Bevy recommendations
+- Cargo plugins
+- just task runner
+- Nightly available as separate ~devShell~
+*** Usage
+#+begin_src shell
+# Git is a mandatory requirement for a local flake
+cargo new [--bin|--lib] --vcs git --edition 2021 <project name>
+cd <project name>
+git add .
+git commit -am 'Initial commit'
+rm .gitignore
+nix flake init ...
+#+end_src
