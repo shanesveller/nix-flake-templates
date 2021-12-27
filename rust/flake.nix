@@ -11,7 +11,7 @@
     flake-compat.flake = false;
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "nixpkgs/nixos-21.11";
-    nixpkgs-darwin.url = "nixpkgs/nixos-21.11-darwin";
+    nixpkgs-darwin.url = "nixpkgs/nixpkgs-21.11-darwin";
     nixpkgs-master.url = "nixpkgs/master";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     pre-commit-hooks = {
